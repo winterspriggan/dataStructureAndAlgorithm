@@ -1,4 +1,4 @@
-package week3_hash;
+package week3;
 
 import java.util.HashSet;
 
@@ -7,7 +7,7 @@ public class Chaining0 {
 	private class HashNode {
 		int key;
 		HashNode next;
-		public HashNode(int k) {
+		public HashNode(int k) { //원래 value가 있음
 			key=k;
 			next=null;
 		}
@@ -37,30 +37,44 @@ public class Chaining0 {
 	
 //	Insert : hTable[index]에는 하나도 저장하지 말고 모두 linkedlist로 구성
 	public void insert(int d) {
-
-		
-		
+		int index= hashFunction(d);
+		HashNode newNode = new HashNode(d);
+		newNode.next = hTable[index];
+		hTable[index] = newNode;
 	}
 
 //	Search
 	public boolean search(int d) {
-
-		
-		
-		return false; 
+		int index = hashFunction(d);
+		HashNode hashNode = hTable[index];
+		while(hashNode != null) {
+			if(hashNode.key==d) return true;
+			else hashNode = hashNode.next;
+		}
+		return false;
 	}
 	
 //	Delete 
 	public boolean delete(int d) {
+		int index = hashFunction(d);
+		HashNode hashNode = hTable[index];
 
-		
-		
-		
-		
-		
-		
-		
-		return false; 
+		if(hashNode == null) return false;
+		else if(hashNode.key == d) {
+			hTable[index]=hashNode.next;
+			return true;
+		}
+		HashNode q = hashNode.next;
+		while(q!=null) {
+			if(q.key==d) {
+				hashNode.next = q.next;
+				return true;
+			} else {
+				hashNode = q;
+				q = q.next;
+			}
+		}
+		return false;
 	}
 	
 	public void showTable() {
@@ -83,7 +97,7 @@ public class Chaining0 {
 		
 		int [] data = new int [dataSize];
 		// 서로 다른 데이터 n개를 만들자
-		HashSet<Integer> rdata = new HashSet<Integer>();
+		HashSet<Integer> rdata = new HashSet<Integer>(); //중복된 데이터는 알아서 처리해줌
 		while (rdata.size()<dataSize) {
 			rdata.add((int)(Math.random()*maxKeyValue));
 		}
@@ -104,16 +118,16 @@ public class Chaining0 {
 		
 		mh.showTable();
 		
-		System.out.println("<< Search >>");
+		System.out.println("\n<< Search >>");
 		for (int i=0;i<testcase;i++) {
 			System.out.printf("%10d ==> %5b%n", data[i],mh.search(data[i]));
 		}
-		System.out.println("<< Delete >>");
+		System.out.println("\n<< Delete >>");
 		for (int i=0;i<5;i++) {
 			System.out.printf("%10d ==> %5b%n", data[i],mh.delete(data[i]));
 		}
 		mh.showTable();
-		System.out.println("<< Search >>");
+		System.out.println("\n<< Search >>");
 		for (int i=0;i<testcase;i++) {
 			System.out.printf("%10d ==> %5b%n", data[i],mh.search(data[i]));
 		}
