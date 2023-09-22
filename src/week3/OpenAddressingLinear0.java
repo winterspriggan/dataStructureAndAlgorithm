@@ -80,6 +80,7 @@ public class OpenAddressingLinear0 {
 
             System.out.println("\n *** Chaining ***");
             int testcase =dataSize;
+            //
             System.out.println("<< Insert >>");
             for (int i=0;i<testcase;i++) {
                 mh.insert(data[i]);
