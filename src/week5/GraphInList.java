@@ -6,30 +6,31 @@ public class GraphInList {  // Vertices # is fixed, Undirected Graph in List
 
 
     public class Node {
-        String city;
-        int dist;
+        public String key;
+        public int dist;
 
-        public Node(String city, int dist) {
-            this.city = city; this.dist = dist;
+        public Node(String key, int dist) {
+            this.key = key; this.dist = dist;
         }
 
         public boolean equals(Node that) {
-            return this.city.equals(that.city);
+            return this.key.equals(that.key);
         }
 
         public int compareTo(Node that) {
-            return this.city.compareTo(that.city);
+            return this.key.compareTo(that.key);
         }
 
         public String toString() {
-            return this.city+"("+this.dist+")";
+            return this.key +"("+this.dist+")";
         }
     }
-    ArrayList<String> vertices;
+    protected ArrayList<String> vertices;
     ArrayList<Integer> outDegree;
-    ArrayList<LinkedList<Node>> adjacentList;
+   protected ArrayList<LinkedList<Node>> adjacentList;
 
     boolean[] visited;
+   protected static int[][]  edges;
 
 
     public void createGraph() {
@@ -73,25 +74,25 @@ public class GraphInList {  // Vertices # is fixed, Undirected Graph in List
     }
 
     public boolean isEmpty() {
-        return (vertices.length==0);
+        return (vertices.size()==0);
     }
 
     public Set<String> adjacent(String v){
         Set<String> set = new HashSet<>();
         int vi = indexOf(v);
-        for(int i=0; i<vertices.length; i++) {
-            if(edges[vi][i]!=0) set.add(vertices[i]);
+        for(int i=0; i<vertices.size(); i++) {
+            if(edges[vi][i]!=0) set.add(vertices.get(i));
         }
         return set;
     }
 
     public void showGraph() {
-        for (int i=0; i<vertices.length;i++) {
-            System.out.printf("%10s >> ",vertices[i]);
-            for (int j=0;j<vertices.length;j++) {
+        for (int i=0; i<vertices.size();i++) {
+            System.out.printf("%10s >> ",vertices.get(i));
+            for (int j=0;j<vertices.size();j++) {
                 String temp = "----------";
                 if (edges[i][j]!=0)
-                    temp=vertices[j];
+                    temp=vertices.get(j);
                 System.out.printf("%12s ",temp);
             }
             System.out.println();
@@ -99,8 +100,8 @@ public class GraphInList {  // Vertices # is fixed, Undirected Graph in List
     }
 
     public void showGraph2() {
-        for (int i=0; i<vertices.length;i++) {
-            for (int j=0;j<vertices.length;j++) {
+        for (int i=0; i<vertices.size();i++) {
+            for (int j=0;j<vertices.size();j++) {
                 System.out.printf("%10d ", edges[i][j]);
             }
             System.out.println();
@@ -113,7 +114,7 @@ public class GraphInList {  // Vertices # is fixed, Undirected Graph in List
         DFSRecursion(v);
     }
     public void initVisited() {
-        for(int i=0; i<vertices.length; i++) visited[i] = false;
+        for(int i=0; i<vertices.size(); i++) visited[i] = false;
     }
 
     private void DFSRecursion(String v) {
@@ -152,6 +153,8 @@ public class GraphInList {  // Vertices # is fixed, Undirected Graph in List
     }
 
     public static void main(String[] args) {
+
+
 
         String [] cities = { "Seoul", "Incheon", "Daejeon", "Daegu", "Kwangju", "Pusan", "Ulsan","Mokpo", "Chuncheon", "Kyeongju"};
         int [][] paths = {
