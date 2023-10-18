@@ -1,6 +1,6 @@
 package week7;
 
-import week5.GraphInList;
+import week7.GraphInList;
 
 import java.util.*;
 
@@ -33,7 +33,7 @@ public class MSTKruscal extends GraphInList {
     public void insertVertex(String v) {
         if(!vertices.contains(v)) {
             vertices.add(v);
-            outDgree.add(0);
+            outDegree.add(0);
             adjacentList.add(new LinkedList<Node>());
             parent.add(v);
         }
@@ -44,7 +44,7 @@ public class MSTKruscal extends GraphInList {
         if(vi>=0) {
             for(int i=0; i<vertices.size(); i++) {
                 deleteEdge(v, vertices.get(i));
-                deleteEdge((vertices.get(i),v));
+                deleteEdge(vertices.get(i),v);
             }
             adjacentList.remove(vi);
             outDegree.remove(vi);
@@ -121,7 +121,6 @@ public class MSTKruscal extends GraphInList {
         };
 
         MSTKruscal g = new MSTKruscal();
-        Arrays.fill(edges, 999);
 
         System.out.println("<< GraphInMatrix >>");
 
@@ -135,7 +134,6 @@ public class MSTKruscal extends GraphInList {
 
         System.out.println(g.adjacent("Seoul"));
 
-        g.showGraph2();
         g.showGraph();
 
 //        g.DFS("Seoul");
