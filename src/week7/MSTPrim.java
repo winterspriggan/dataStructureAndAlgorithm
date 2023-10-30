@@ -1,6 +1,6 @@
 package week7;
 
-import week5.GraphInList;
+import week7.GraphInList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,7 +81,7 @@ public class MSTPrim extends GraphInList {
         };
 
         MSTPrim g = new MSTPrim();
-        Arrays.fill(edges, 999);
+//        Arrays.fill(edges, 999);
 
         System.out.println("<< GraphInMatrix >>");
 
@@ -95,7 +95,7 @@ public class MSTPrim extends GraphInList {
 
         System.out.println(g.adjacent("Seoul"));
 
-        g.showGraph2();
+//        g.showGraph2();
         g.showGraph();
 
 //        g.DFS("Seoul");

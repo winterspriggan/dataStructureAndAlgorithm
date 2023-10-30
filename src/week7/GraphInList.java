@@ -13,12 +13,12 @@ import java.util.Set;
 public class GraphInList {
 
     public class Node {
-        String key;
-        int num ;
+        public String key;
+        int dist ;
 
         public Node (String k, int n) {
             key =k;
-            num=n;
+            dist=n;
         }
 
         public boolean equals(Node other) {
@@ -30,7 +30,7 @@ public class GraphInList {
         }
 
         public String toString() {
-            return key+"("+num+") ";
+            return key+"("+dist+") ";
         }
     }
 
