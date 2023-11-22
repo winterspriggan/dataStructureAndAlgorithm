@@ -1,9 +1,10 @@
 package week11;
 
+import week12.DirectedGraphInList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedList;
 
 public class BellmanFordSP extends DirectedGraphInList {
 

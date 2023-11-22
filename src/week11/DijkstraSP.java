@@ -1,13 +1,12 @@
 package week11;
 
-import middleTest2.GraphInList;
-import middleTest2.NewPrim;
+import week12.DirectedGraphInList;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-public class DijkstraSP extends DirectedGraphInList{
+public class DijkstraSP extends DirectedGraphInList {
     HashSet<String> V, S;
     int [] d;
     int r = -1;
@@ -25,7 +24,6 @@ public class DijkstraSP extends DirectedGraphInList{
             V.add(s);
         int r=vertices.indexOf(start);
         d[r]=0;
-        prim();
     }
 
     private void dijkstra(String start) {
